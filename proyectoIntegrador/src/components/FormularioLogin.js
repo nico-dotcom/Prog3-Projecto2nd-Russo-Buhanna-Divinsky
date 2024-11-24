@@ -27,7 +27,7 @@ export default class FormularioRegister extends Component {
         auth.signInWithEmailAndPassword(email,password)
             .then((response) =>{
                 this.setState({loggedIn: true});
-                this.props.navigation.navigate('home')
+                this.props.navigation.navigate('TabNav')
             })
             .catch(error => {
                 this.setState({error:'Credenciales invalidas'})
