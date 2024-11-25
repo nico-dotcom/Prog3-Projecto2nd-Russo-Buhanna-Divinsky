@@ -62,6 +62,8 @@ export default class HomePage extends Component {
 
                             <View style={styles.postContainer}>
 
+                               
+
                                 <Text style={styles.postTitle}>
                                     Descripción: {this.props.item.data.descripcion}
                                 </Text>
@@ -71,7 +73,11 @@ export default class HomePage extends Component {
                                 </Text>
 
                                 <Text style={styles.postLike}>
-                                Likes: {this.props.item.data.like.length}
+                                    Likes: {this.props.item.data.like.length}
+                                </Text>
+
+                                <Text style={styles.postDate}>
+                                    Email del creado: {this.props.item.data.email}
                                 </Text>
 
                              
