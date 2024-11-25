@@ -1,5 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
+import Search from '../screens/Search'
 import Postear from '../screens/Postear';
 import Entypo from '@expo/vector-icons/Entypo';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
@@ -12,6 +13,7 @@ function TabNavigator() {
     return (
             <Tab.Navigator screenOptions={{tabBarShowLabel:false, headerShown: false}}>
                 <Tab.Screen name="Home" component={Home} options={{tabBarIcon: () => <Entypo name="home" size={24} color="black" />}}/>
+                <Tab.Screen name="Search" component={Search} options={{tabBarIcon: () => <FontAwesome name="search" size={24} color="black" />}}/>
                 <Tab.Screen name="Postear" component={Postear} options={{tabBarIcon: () => <MaterialIcons name="post-add" size={24} color="black" />}}/>
                 {/* <Tab.Screen name="Perfil" component={Perfil} options={{tabBarIcon: () => <Feather name="user" size={24} color="black" />}}/> */}
 
