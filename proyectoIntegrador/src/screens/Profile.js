@@ -7,9 +7,6 @@ export default class Profile extends Component {
         return (
             <View>
                 <ProfileComponent navigation ={this.props.navigation} />
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('home')}>
-                    <Text>Ir a home</Text>
-                </TouchableOpacity>
             </View>
         );
     }

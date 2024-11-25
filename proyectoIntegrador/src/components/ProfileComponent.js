@@ -94,9 +94,11 @@ class ProfileComponent extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.profileContainer}>
-                    <Text style={styles.profileText}>Email: {this.state.profileEmail}</Text>
-                    <Text style={styles.profileText}>Username: {this.state.profileUsername}</Text>
-                    <Text style={styles.profileText}>Creation time: {this.state.profileCreationTime}</Text>
+                    <View style={styles.profileInfo}>
+                        <Text style={styles.profileText}>Email: {this.state.profileEmail}</Text>
+                        <Text style={styles.profileText}>Username: {this.state.profileUsername}</Text>
+                        <Text style={styles.profileText}>Creation time: {this.state.profileCreationTime}</Text>
+                    </View>
 
                     <View style={styles.postContainer}>
 
@@ -120,10 +122,6 @@ class ProfileComponent extends Component {
                                     Likes: {item.data.like.length}
                                 </Text>
 
-                                <TouchableOpacity style={styles.Like} >
-                                    <Text style={styles.buttonText}>Like</Text>
-                                </TouchableOpacity>
-
                                 <TouchableOpacity style={styles.Delete} onPress={() => this.deletePost(item.id)}>
                                     <Text style={styles.buttonText}>Delete</Text>
                                 </TouchableOpacity>
@@ -133,8 +131,8 @@ class ProfileComponent extends Component {
                     />
                     </View>
 
-                    <TouchableOpacity onPress={this.logOut}>
-                        <Text>Log out</Text>
+                    <TouchableOpacity style={styles.button} onPress={this.logOut}>
+                        <Text style={styles.buttonText}>Log out</Text>
                     </TouchableOpacity>
 
                 </View>
@@ -168,6 +166,13 @@ const styles = StyleSheet.create({
         padding:10
     },
 
+    profileInfo: { 
+        marginBottom: 20,
+        padding: 10,
+        backgroundColor: '#f0f0f0',
+        borderRadius: 5,
+    },
+
     postTitle: {
         fontSize: 18,
         fontWeight: 'bold',
@@ -185,22 +190,24 @@ const styles = StyleSheet.create({
         marginTop: 5,
         color: '#666',
     },
+
+    button: {
+        width: '100%',
+        padding: 15,
+        backgroundColor: '#007BFF',
+        borderRadius: 5,
+        alignItems: 'center',
+        marginTop: 10
+    },
+
     buttonText: {
         color: '#fff',
         fontSize: 16,
         fontWeight: 'bold'
     },
-    Like:{
-        position: 'absolute',
-        top: 10,
-        right: 10,
-        padding: 8,
-        backgroundColor: '#007BFF',
-        borderRadius: 5,
-        alignItems: 'center'
-    },
 
     Delete:{
+        position: 'absolute',
         top: 10,
         right: 10,
         padding: 8,
