@@ -19,7 +19,6 @@ class ProfileComponent extends Component {
         auth.onAuthStateChanged((user) => {
             if (user) {
                 console.log('User logged in');
-                console.log(auth.currentUser);
                 this.setState({profiles: auth.currentUser});
 
                 const mailUser = auth.currentUser.email;
@@ -28,22 +27,12 @@ class ProfileComponent extends Component {
                     docs => {
                         docs.forEach(
                             doc => {
-                                console.log(doc.data().owner);
-                                console.log(mailUser);
-                                console.log(doc);
-                                
                                 if (doc.data().owner === mailUser) {
-                                    console.log(doc.data().owner);
-                                    console.log(doc.data().createdAt);
-                                    console.log(doc.data().username);
                                     this.setState({
                                         profileEmail: doc.data().owner,
                                         profileCreationTime: doc.data().createdAt,
                                         profileUsername: doc.data().username,
                                     });
-                                }
-                                else {
-                                    console.log('No such document');
                                 }
                             }
                         );
@@ -70,23 +59,34 @@ class ProfileComponent extends Component {
                     }
                 );
 
-            } else {
-                console.log('User logged out');
             }
         });
     }
 
-    deletePost = (postOwner) => {
-        db.collection('posts').where('owner' , '==', this.state.profileEmail).update
-            .then(() => {
-                console.log("Post successfully deleted!");
-                this.setState({
-                    postsUser: this.state.postsUser.filter(post => post.owner !== postOwner)
-                });
-                firebase.firestore().collection('posts').doc(postOwner).delete();
-            }).catch((error) => {
-                console.error("Error removing post: ", error);
-            });
+    logOut = () => {
+        auth.signOut().then(() => {
+            console.log('User logged out');
+        }).catch((error) => {
+            console.error('Sign out error: ', error);
+        });
+
+        this.props.navigation.navigate('login')
+    };
+
+    deletePost = (postId) => {
+        console.log('Delete post: ', postId);
+
+        console.log(db.collection('posts'))
+
+        db.collection('posts')
+        .doc(postId)
+        .delete()
+        .then(() => {
+            console.log('Post deleted');
+        }).catch((error) => {
+            console.error('Delete post error: ', error);
+        }
+        );
     };
 
 
@@ -124,7 +124,7 @@ class ProfileComponent extends Component {
                                     <Text style={styles.buttonText}>Like</Text>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity style={styles.Delete} onPress={() => this.deletePost(item.owner)}>
+                                <TouchableOpacity style={styles.Delete} onPress={() => this.deletePost(item.id)}>
                                     <Text style={styles.buttonText}>Delete</Text>
                                 </TouchableOpacity>
 
@@ -132,6 +132,10 @@ class ProfileComponent extends Component {
                         )}
                     />
                     </View>
+
+                    <TouchableOpacity onPress={this.logOut}>
+                        <Text>Log out</Text>
+                    </TouchableOpacity>
 
                 </View>
             </View>
