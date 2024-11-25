@@ -94,13 +94,16 @@ class ProfileComponent extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.profileContainer}>
+                <TouchableOpacity style={styles.IrRegistro} onPress={this.logOut}>
+                        <Text style={styles.buttonText}>Log out</Text>
+                </TouchableOpacity>
                     <View style={styles.profileInfo}>
                         <Text style={styles.profileText}>Email: {this.state.profileEmail}</Text>
                         <Text style={styles.profileText}>Username: {this.state.profileUsername}</Text>
                         <Text style={styles.profileText}>Creation time: {this.state.profileCreationTime}</Text>
                     </View>
 
-                    <View style={styles.postContainer}>
+                    <View style={styles.postContainerTOP}>
 
                     <Text style={styles.postTitle}>Publicaciones: {this.state.postsUser.length}</Text> 
                     <Text style={styles.postTitle}>Mis Posts:</Text>
@@ -130,11 +133,6 @@ class ProfileComponent extends Component {
                         )}
                     />
                     </View>
-
-                    <TouchableOpacity style={styles.button} onPress={this.logOut}>
-                        <Text style={styles.buttonText}>Log out</Text>
-                    </TouchableOpacity>
-
                 </View>
             </View>
         );
@@ -146,17 +144,28 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
     },
+
     profileContainer: {
         marginBottom: 20,
         padding: 10,
         backgroundColor: '#f0f0f0',
         borderRadius: 5,
     },
+
+    postContainerTOP: {
+        marginTop: 20,
+        marginBottom: 20,
+        padding: 10,
+        backgroundColor: '##ffffff',
+        borderRadius: 5,
+    },
+    
     profileText: {
         fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 5,
     },
+
     postContainer: {
         backgroundColor: '#fff',
         borderRadius: 5,
@@ -178,6 +187,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 5,
         color: '#007BFF',
+        borderColor: '#007BFF',
+        marginBottom: 30,
     },
 
     postDate: {
@@ -215,6 +226,17 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         alignItems: 'center'
     },
+
+    IrRegistro:{
+        position: 'fixed',
+        zIndex: 1,
+        top: 10,
+        right: 10,
+        padding: 8,
+        backgroundColor: '#007BFF',
+        borderRadius: 5,
+        alignItems: 'center'
+    }
 });
 
 export default ProfileComponent;
