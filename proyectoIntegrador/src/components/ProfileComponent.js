@@ -93,20 +93,26 @@ class ProfileComponent extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.profileContainer}>
+
                 <TouchableOpacity style={styles.IrRegistro} onPress={this.logOut}>
                         <Text style={styles.buttonText}>Log out</Text>
                 </TouchableOpacity>
+
+                <Text style={styles.title}>Perfil</Text>
+
                     <View style={styles.profileInfo}>
-                        <Text style={styles.profileText}>Email: {this.state.profileEmail}</Text>
-                        <Text style={styles.profileText}>Username: {this.state.profileUsername}</Text>
-                        <Text style={styles.profileText}>Creation time: {this.state.profileCreationTime}</Text>
+                        <Text style={styles.profileText}>Email: </Text> <Text style={styles.text}>{this.state.profileEmail}</Text>
+                        <Text style={styles.profileText}>Username: </Text> <Text style={styles.text}>{this.state.profileUsername}</Text>
+                        <Text style={styles.profileText}>Creation time: </Text > <Text style={styles.text}>{this.state.profileCreationTime}</Text>
+                        <Text style={styles.profileText}>Publicaciones: </Text>  <Text style={styles.text}>{this.state.postsUser.length}</Text>
                     </View>
 
-                    <View style={styles.postContainerTOP}>
 
-                    <Text style={styles.postTitle}>Publicaciones: {this.state.postsUser.length}</Text> 
-                    <Text style={styles.postTitle}>Mis Posts:</Text>
+                    <View>
+                    <Text style={styles.reseñasTitle}>Mis Reseñas:</Text>
+                    </View>
+                    
+
                     <FlatList
                         data={this.state.postsUser}
                         keyExtractor={(item) => item.id}
@@ -114,7 +120,7 @@ class ProfileComponent extends Component {
                             <View style={styles.postContainer}>
 
                                 <Text style={styles.postTitle}>
-                                    Descripción: {item.data.descripcion}
+                                    Reseña: {item.data.descripcion}
                                 </Text>
 
                                 <Text style={styles.postDate}>
@@ -132,8 +138,7 @@ class ProfileComponent extends Component {
                             </View>
                         )}
                     />
-                    </View>
-                </View>
+                
             </View>
         );
     }
@@ -145,19 +150,20 @@ const styles = StyleSheet.create({
         padding: 20,
     },
 
-    profileContainer: {
-        marginBottom: 20,
-        padding: 10,
-        backgroundColor: '#f0f0f0',
-        borderRadius: 5,
-    },
+    title:{
+        fontSize: 16,
 
-    postContainerTOP: {
-        marginTop: 20,
-        marginBottom: 20,
-        padding: 10,
-        backgroundColor: '##ffffff',
-        borderRadius: 5,
+    },
+    reseñasTitle:{
+        fontSize: 15,
+        fontWeight: 'bold',
+        marginBottom:5,
+        marginTop:200
+
+    },
+    text:{
+        fontSize: 14,
+        marginBottom:5
     },
     
     profileText: {
@@ -167,28 +173,26 @@ const styles = StyleSheet.create({
     },
 
     postContainer: {
+        // flex: 1,
+        marginTop:10,
         backgroundColor: '#fff',
         borderRadius: 5,
-        marginBottom:10,
-        marginRight:10,
-        marginLeft:10,
         padding:10
     },
 
     profileInfo: { 
+        flex:1,
         marginBottom: 20,
         padding: 10,
-        backgroundColor: '#f0f0f0',
+        // backgroundColor: "white",
         borderRadius: 5,
     },
 
     postTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
+        fontSize: 14,
         marginBottom: 5,
-        color: '#007BFF',
         borderColor: '#007BFF',
-        marginBottom: 30,
+        // marginBottom: 30,
     },
 
     postDate: {
@@ -202,34 +206,28 @@ const styles = StyleSheet.create({
         color: '#666',
     },
 
-    button: {
-        width: '100%',
-        padding: 15,
-        backgroundColor: '#007BFF',
+    Delete:{
+        padding: 10,
+        marginTop: 10,
+        backgroundColor: "#bd4120",
         borderRadius: 5,
-        alignItems: 'center',
-        marginTop: 10
+        alignItems: 'center'
     },
 
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom:30,
+        marginTop:40
+    },
     buttonText: {
         color: '#fff',
         fontSize: 16,
         fontWeight: 'bold'
     },
-
-    Delete:{
-        position: 'absolute',
-        top: 10,
-        right: 10,
-        padding: 8,
-        backgroundColor: '#007BFF',
-        borderRadius: 5,
-        alignItems: 'center'
-    },
-
     IrRegistro:{
-        position: 'fixed',
-        zIndex: 1,
+        position: 'absolute',
         top: 10,
         right: 10,
         padding: 8,
