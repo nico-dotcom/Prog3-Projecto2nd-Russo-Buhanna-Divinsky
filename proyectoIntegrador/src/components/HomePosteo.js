@@ -77,12 +77,12 @@ export default class HomePage extends Component {
                              
                                 {
                                 this.state.like === true ? (
-                                    <TouchableOpacity style={styles.IrRegistro} onPress={() => this.dislike(this.props.item.id)}>
+                                    <TouchableOpacity style={styles.Like} onPress={() => this.dislike(this.props.item.id)}>
                                         <AntDesign name="dislike1" size={24} color="red" />
                                 </TouchableOpacity>
                                    
                                 ) : (
-                                    <TouchableOpacity style={styles.IrRegistro} onPress={() => this.like(this.props.item.id)}>
+                                    <TouchableOpacity style={styles.Like} onPress={() => this.like(this.props.item.id)}>
                                     <AntDesign name="like1" size={24} color="green" />
 
                                 </TouchableOpacity>
@@ -97,21 +97,6 @@ export default class HomePage extends Component {
     
 }
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#f5f5f5',
-    },
-
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginBottom:20,
-    },
-
-    listContainer: {
-        paddingBottom: 20,
-    },
-
     postContainer: {
         backgroundColor: '#fff',
         borderRadius: 5,
@@ -138,12 +123,7 @@ const styles = StyleSheet.create({
         marginTop: 5,
         color: '#666',
     },
-    buttonText: {
-        color: '#fff',
-        fontSize: 16,
-        fontWeight: 'bold'
-    },
-    IrRegistro:{
+    Like:{
         position: 'absolute',
         top: 10,
         right: 10,

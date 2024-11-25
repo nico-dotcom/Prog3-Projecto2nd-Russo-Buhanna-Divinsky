@@ -10,7 +10,8 @@ export default class FormularioRegister extends Component {
             fecha_creacion:'',
             email:'',
             error:'',
-            loggedIn: false
+            loggedIn: false,
+            creadoBien: ''
         }
     }
   
@@ -22,6 +23,7 @@ export default class FormularioRegister extends Component {
             like: []   
      })
      .then((response) =>{
+        this.setState({creadoBien: "Se creo satisfactoriamente"})
         console.log("creado correctamente")
     })
      .catch(e => console.log(e))
@@ -44,6 +46,14 @@ export default class FormularioRegister extends Component {
                 &&
                 <Text style={styles.errorText}>
                     {this.state.error}
+                </Text>
+            }
+
+{
+                this.state.creadoBien !== ''
+                &&
+                <Text style={styles.creadoBien}>
+                    {this.state.creadoBien}
                 </Text>
             }
 
@@ -94,6 +104,10 @@ const styles = StyleSheet.create({
     },
     errorText: {
         color: 'red',
+        marginBottom: 10
+    },
+    creadoBien:{
+        color: 'green',
         marginBottom: 10
     }
 })

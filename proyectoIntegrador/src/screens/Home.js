@@ -1,9 +1,7 @@
 import {Text,View,StyleSheet,ActivityIndicator,FlatList} from "react-native";
 import React, {Component} from "react";
 import HomePage from '../components/HomePosteo';  
-import {auth, db} from '../firebase/config';
-
-
+import {db} from '../firebase/config';
 
 export default class Home extends Component{
     constructor(props){
@@ -14,6 +12,7 @@ export default class Home extends Component{
             error: '',
         }
     }
+
     componentDidMount(){
         db.collection('posts')
         .orderBy("fecha_creacion", "desc")
@@ -40,28 +39,23 @@ export default class Home extends Component{
     render() {
         return(
             <View> 
-                {/* --- */}
                 <View style={styles.container}>
+                    <Text style={styles.title}>Home</Text>
 
-<Text style={styles.title}>Home</Text>
+                    {this.state.loading ? (
+                        <ActivityIndicator size="large" color="#007BFF" />
+                    ) : (
 
-{this.state.loading ? (
-    <ActivityIndicator size="large" color="#007BFF" />
-) : (
+                        <FlatList
+                            data={this.state.posteos}
+                            keyExtractor={(item) => item.id}
 
-    <FlatList
-        data={this.state.posteos}
-        keyExtractor={(item) => item.id}
-
-        renderItem={({ item }) => (
-            <HomePage item={item} />
-        )} />
-    )
-    }
-    
-                {/* --- */}
-
-                </View>
+                            renderItem={({ item }) => (
+                                <HomePage item={item} />
+                            )} />
+                        )
+                        }            
+                    </View>
                 </View>
 
         )
@@ -78,50 +72,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         marginBottom:20,
-    },
+    }
 
-    listContainer: {
-        paddingBottom: 20,
-    },
-
-    postContainer: {
-        backgroundColor: '#fff',
-        borderRadius: 5,
-        marginBottom:10,
-        marginRight:10,
-        marginLeft:10,
-        padding:10
-    },
-
-    postTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginBottom: 5,
-        color: '#007BFF',
-    },
-
-    postDate: {
-        fontSize: 14,
-        color: '#666',
-    },
-
-    postLike: {
-        fontSize: 14,
-        marginTop: 5,
-        color: '#666',
-    },
-    buttonText: {
-        color: '#fff',
-        fontSize: 16,
-        fontWeight: 'bold'
-    },
-    IrRegistro:{
-        position: 'absolute',
-        top: 10,
-        right: 10,
-        padding: 8,
-        backgroundColor: '#007BFF',
-        borderRadius: 5,
-        alignItems: 'center'
-    },
 });
