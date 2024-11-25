@@ -65,8 +65,10 @@ export default class HomePage extends Component {
                                
 
                                 <Text style={styles.postTitle}>
-                                    Descripción: {this.props.item.data.descripcion}
+                                    Reseña:
                                 </Text>
+
+                                <Text style={styles.descripcion}>  {this.props.item.data.descripcion} </Text>
 
                                 <Text style={styles.postDate}>
                                     Fecha: {this.props.item.data.fecha_creacion}
@@ -76,7 +78,7 @@ export default class HomePage extends Component {
                                     Likes: {this.props.item.data.like.length}
                                 </Text>
 
-                                <Text style={styles.postDate}>
+                                <Text style={styles.email}>
                                     Email del creado: {this.props.item.data.email}
                                 </Text>
 
@@ -106,22 +108,28 @@ const styles = StyleSheet.create({
     postContainer: {
         backgroundColor: '#fff',
         borderRadius: 5,
-        marginBottom:10,
+        marginBottom:20,
         marginRight:10,
         marginLeft:10,
         padding:10
     },
 
     postTitle: {
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: 'bold',
-        marginBottom: 5,
-        color: '#007BFF',
+        marginBottom: 15,
+        color: 'black',
     },
 
     postDate: {
         fontSize: 14,
         color: '#666',
+    },
+    email: {
+        fontSize: 14,
+        color: '#666',
+        marginTop: 5,
+        marginBottom:20
     },
 
     postLike: {
@@ -130,11 +138,17 @@ const styles = StyleSheet.create({
         color: '#666',
     },
     Like:{
-        position: 'absolute',
-        top: 10,
-        right: 10,
+        marginTop: -50,
+        marginLeft: 300,
         padding: 8,
         borderRadius: 5,
         alignItems: 'center'
     },
+    descripcion:{
+        fontSize: 15,
+        marginBottom: 15,
+        color: 'black',
+
+
+    }
 });

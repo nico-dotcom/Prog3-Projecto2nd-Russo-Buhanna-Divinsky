@@ -38,9 +38,9 @@ export default class Home extends Component{
     }
     render() {
         return(
-            <View> 
+            <View style={styles.mainContainer}>
                 <View style={styles.container}>
-                    <Text style={styles.title}>Home</Text>
+                    <Text style={styles.title}>Reseñas de usuarios</Text>
 
                     {this.state.loading ? (
                         <ActivityIndicator size="large" color="#007BFF" />
@@ -63,7 +63,12 @@ export default class Home extends Component{
 }
 
 const styles = StyleSheet.create({
+    mainContainer: {
+        flex: 1, 
+        backgroundColor: '#f5f5f5',
+    },
     container: {
+        flex: 1,
         backgroundColor: '#f5f5f5',
     },
 
@@ -71,7 +76,11 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginBottom:20,
+        marginBottom:30,
+        marginTop:40
+    },
+    posteos:{
+        marginBottom:20
     }
 
 });

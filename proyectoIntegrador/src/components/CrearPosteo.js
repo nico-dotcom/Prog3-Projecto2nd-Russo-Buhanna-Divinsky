@@ -23,7 +23,7 @@ export default class FormularioRegister extends Component {
             like: []   
      })
      .then((response) =>{
-        this.setState({creadoBien: "Se creo satisfactoriamente"})
+        this.setState({creadoBien: "Su reseña se subio correctamente"})
         console.log("creado correctamente")
     })
      .catch(e => console.log(e))
@@ -33,10 +33,10 @@ export default class FormularioRegister extends Component {
     render(){
         return (
         <View style={styles.container}>
-            <Text style={styles.title}>Crear un posteo</Text>
+            <Text style={styles.title}>Subir una reseña</Text>
             <TextInput
                 style = {styles.input}
-                placeholder = "Ingrese la descripcion"
+                placeholder = "Ingrese la reseña"
                 keyboardType='default'
                 onChangeText = {(text => this.setState({ descripcion :text , error:'' }))}
                 value = {this.state.descripcion}
@@ -58,7 +58,7 @@ export default class FormularioRegister extends Component {
             }
 
             <TouchableOpacity style={styles.button} onPress={()=>this.submit()}>
-                <Text style={styles.buttonText}>Cargar posteo</Text>
+                <Text style={styles.buttonText}>Subir reseña</Text>
             </TouchableOpacity>
            
         </View>
