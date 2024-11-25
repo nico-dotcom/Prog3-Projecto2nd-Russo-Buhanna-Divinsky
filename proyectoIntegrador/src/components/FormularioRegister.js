@@ -13,6 +13,18 @@ export default class FormularioRegister extends Component {
     }
     }
 
+    componentDidMount() {     
+        auth.onAuthStateChanged(user => { 
+            if (user) {
+                console.log("Estas iniciado con la cuenta:", user.email)
+                this.props.navigation.navigate('TabNav');
+            } else {
+                console.log("No estas iniciado sesion. Tu estado actual es:" , user)
+                this.props.navigation.navigate('login');
+            }
+        });
+    }
+
     submit(email,username,password){
         if(!email.includes('@')){
         this.setState({error: "Ingrese un formato de email valido"})
