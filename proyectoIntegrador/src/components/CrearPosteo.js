@@ -16,17 +16,23 @@ export default class FormularioRegister extends Component {
     }
   
     submit(){
-        db.collection('posts').add({
-            email: auth.currentUser.email,
-            descripcion: this.state.descripcion,
-            fecha_creacion: Date.now(),
-            like: []   
-     })
-     .then((response) =>{
-        this.setState({creadoBien: "Su reseña se subio correctamente"})
-        console.log("creado correctamente")
-    })
-     .catch(e => console.log(e))
+        if(this.state.descripcion !== ''){
+            db.collection('posts').add({
+                email: auth.currentUser.email,
+                descripcion: this.state.descripcion,
+                fecha_creacion: Date.now(),
+                like: []   
+         })
+         .then((response) =>{
+            this.setState({creadoBien: "Su reseña se subio correctamente"})
+            console.log("creado correctamente")
+        })
+         .catch(e => console.log(e))
+        }else{
+            this.setState({error: "Ingrese algun caracter"})
+
+        }
+       
      
     }
 

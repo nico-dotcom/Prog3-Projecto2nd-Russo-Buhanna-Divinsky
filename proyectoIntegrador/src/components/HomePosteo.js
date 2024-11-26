@@ -86,12 +86,14 @@ export default class HomePage extends Component {
                                 {
                                 this.state.like === true ? (
                                     <TouchableOpacity style={styles.Like} onPress={() => this.dislike(this.props.item.id)}>
-                                        <AntDesign name="dislike1" size={24} color="red" />
+                                       <AntDesign name="heart" size={24} color="black" />
+
                                 </TouchableOpacity>
                                    
                                 ) : (
                                     <TouchableOpacity style={styles.Like} onPress={() => this.like(this.props.item.id)}>
-                                    <AntDesign name="like1" size={24} color="green" />
+                                       <AntDesign name="hearto" size={24} color="black" />
+
 
                                 </TouchableOpacity>
                                 )
